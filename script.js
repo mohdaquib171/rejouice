@@ -643,57 +643,27 @@ timeLineTwo.from("#main-heading span", {
   opacity: 0,
   stagger: 0.1,
   duration: 1,
-  delay: 5,
+  delay: 3,
 });
 
-setTimeout(() => {
-  $("#loader").addClass("show");
-  $("#loader").addClass("hidden");
-}, 3000);
+var newtl = gsap.timeline();
 
-function footerHeadingIntersectFn() {
-  const observer = new IntersectionObserver((entries) => {
-    // Loop over the entries
-    entries.forEach((entry) => {
-      // If the element is visible
-      if (entry.isIntersecting) {
-        timeLineTwo.from("#footer-heading span", {
-          y: -150,
-          opacity: 0,
-          stagger: 0.09,
-          duration: 1,
-        });
-      }
-    });
-  });
-
-  observer.observe(document.querySelector("#footer-heading"));
-}
-
-footerHeadingIntersectFn();
-
-function sideByTexts() {
-  const splitLines = new SplitText("#loader p", {
-    type: "lines",
-    linesClass: "line line++",
-  });
-
-  timeLineOne.from(".loaderh3", {
-    x: 40,
-    opacity: 0,
-    duration: 3,
-    stagger: 0.1,
-  });
-
-  timeLineOne.to(".loaderh3", {
-    x: -40,
-    opacity: 0,
-    duration: 3,
-    stagger: 0.1,
-  });
-}
-
-sideByTexts();
+newtl.from("#loader h3", {
+  x: 40,
+  opacity: 0,
+  duration: 1,
+  stagger: 0.2,
+});
+newtl.to("#loader h3", {
+  x: -40,
+  opacity: 0,
+  duration: 1,
+  stagger: -0.2,
+});
+newtl.to("#loader", {
+  opacity: 0,
+  display: "none",
+});
 
 let styleElem = document.head.appendChild(document.createElement("style"));
 
